@@ -46,6 +46,19 @@ const DashboardScreen = () => {
         margin: '0 auto'
       }}>
         
+        {/* Visual Schedule */}
+        <div 
+          style={activityCardStyle}
+          onClick={() => navigate('/schedule')}
+          onMouseEnter={(e) => getHoverStyle(e, '#9C27B0')}
+          onMouseLeave={removeHoverStyle}
+          role="button"
+          tabIndex={0}
+        >
+          <div style={{ fontSize: '3.5rem', marginBottom: '0.5rem' }}>📅</div>
+          <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', margin: 0 }}>My Schedule</h3>
+        </div>
+
         {/* Letter Trace */}
         <div 
           style={activityCardStyle}
@@ -96,6 +109,32 @@ const DashboardScreen = () => {
         >
           <div style={{ fontSize: '3.5rem', marginBottom: '0.5rem' }}>⭐</div>
           <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', margin: 0 }}>My Stars</h3>
+        </div>
+
+        {/* Sensory Bubbles */}
+        <div 
+          style={activityCardStyle}
+          onClick={() => navigate('/bubbles')}
+          onMouseEnter={(e) => getHoverStyle(e, '#00BCD4')}
+          onMouseLeave={removeHoverStyle}
+          role="button"
+          tabIndex={0}
+        >
+          <div style={{ fontSize: '3.5rem', marginBottom: '0.5rem' }}>🫧</div>
+          <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', margin: 0 }}>Sensory Bubbles</h3>
+        </div>
+
+        {/* Shape Match */}
+        <div 
+          style={activityCardStyle}
+          onClick={() => navigate('/shapes')}
+          onMouseEnter={(e) => getHoverStyle(e, '#FF5722')}
+          onMouseLeave={removeHoverStyle}
+          role="button"
+          tabIndex={0}
+        >
+          <div style={{ fontSize: '3.5rem', marginBottom: '0.5rem' }}>🔺</div>
+          <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', margin: 0 }}>Shape Match</h3>
         </div>
 
       </div>
