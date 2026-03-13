@@ -57,116 +57,7 @@ function Confetti() {
   );
 }
 
-/* ══════════════════════════════════════════
-   ANALYZING OVERLAY
-══════════════════════════════════════════ */
-function AnalyzingOverlay() {
-  const videoRef = useRef(null);
-  const [hasCamera, setHasCamera] = useState(false);
-  const [cameraError, setCameraError] = useState(false);
 
-  useEffect(() => {
-    let stream = null;
-    const startCamera = async () => {
-      try {
-        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-          setHasCamera(true);
-        }
-      } catch (err) {
-        setCameraError(true);
-        console.error("Camera access error:", err);
-      }
-    };
-    startCamera();
-    return () => {
-      if (stream) {
-        stream.getTracks().forEach(track => track.stop());
-      }
-    };
-  }, []);
-
-  return (
-    <div style={{
-      position: 'fixed', inset: 0, zIndex: 300,
-      display: 'flex', flexDirection: 'column',
-      alignItems: 'center', justifyContent: 'center',
-      background: 'rgba(4,4,20,0.85)', backdropFilter: 'blur(10px)',
-    }}>
-      
-      {/* CAMERA VIEWFINDER */}
-      <div style={{
-        position: 'relative',
-        width: 'clamp(200px, 50vw, 300px)',
-        height: 'clamp(200px, 50vw, 300px)',
-        borderRadius: '50%',
-        overflow: 'hidden',
-        border: '6px solid #FFD700',
-        boxShadow: '0 0 30px rgba(255, 215, 0, 0.4)',
-        background: '#000',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}>
-        {cameraError ? (
-          <div style={{ color: '#FFD700', textAlign: 'center', padding: '1rem', fontFamily: '"Comic Sans MS",cursive' }}>
-            <span style={{ fontSize: '3rem' }}>📷</span><br />
-            Camera unavailable
-          </div>
-        ) : (
-          <video 
-            ref={videoRef}
-            autoPlay 
-            playsInline 
-            muted 
-            style={{ 
-              width: '100%', 
-              height: '100%', 
-              objectFit: 'cover',
-              transform: 'scaleX(-1)', // mirror for front cam
-              opacity: hasCamera ? 1 : 0,
-              transition: 'opacity 0.5s',
-            }} 
-          />
-        )}
-        
-        {/* scanning laser effect */}
-        <div style={{
-          position: 'absolute',
-          top: 0, left: 0, right: 0, height: '4px',
-          background: '#00ff00',
-          boxShadow: '0 0 10px #00ff00',
-          animation: 'scan 2s linear infinite'
-        }} />
-      </div>
-
-      <style>{`
-        @keyframes scan {
-          0% { transform: translateY(0); opacity: 0; }
-          10% { opacity: 1; }
-          90% { opacity: 1; }
-          100% { transform: translateY(clamp(200px, 50vw, 300px)); opacity: 0; }
-        }
-      `}</style>
-      
-      <div style={{
-        marginTop: '2rem', color: '#FFD700',
-        fontFamily: '"Comic Sans MS","Chalkboard SE",cursive',
-        fontSize: 'clamp(1.5rem,4vw,2.5rem)', fontWeight: 900,
-        textShadow: '0 2px 12px rgba(0,0,0,.6)', animation: 'pulse 1s infinite',
-      }}>Analyzing... 🔍</div>
-      <div style={{ display: 'flex', gap: '.5rem', marginTop: '1.2rem' }}>
-        {[0, 1, 2, 3].map(i => (
-          <div key={i} style={{
-            width: 14, height: 14, borderRadius: '50%', backgroundColor: '#FFD700',
-            animation: `dotBounce .8s ${i * .15}s infinite`,
-          }} />
-        ))}
-      </div>
-    </div>
-  );
-}
 
 /* ══════════════════════════════════════════
    CELEBRATION OVERLAY  — 3 action buttons
@@ -570,8 +461,7 @@ export default function ActivityScreen() {
   }, []);
 
   const handleFinish = () => {
-    setPhase('analyzing');
-    setTimeout(() => setPhase('celebrate'), 4000);
+    setPhase('celebrate');
   };
   const handleNextLetter = () => selectLetter((index + 1) % 26);
   const handleTryAgain = () => selectLetter(index);
@@ -856,7 +746,7 @@ export default function ActivityScreen() {
       </div>{/* end fixed wrapper */}
 
       {/* ── OVERLAYS ── */}
-      {phase === 'analyzing' && <AnalyzingOverlay />}
+
       {phase === 'celebrate' && (
         <CelebrationOverlay
           letter={letter}
