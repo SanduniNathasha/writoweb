@@ -12,10 +12,11 @@ import ShapeMatchScreen from './pages/ShapeMatchScreen';
 import MyStarsScreen from './pages/MyStarsScreen'; 
 import ActivityScreen from './pages/ActivityScreen';
 import FeedbackScreen from './pages/FeedbackScreen';
-import EmotionScreen from './pages/EmotionScreen';
 import SceneryScreen from './pages/SceneryScreen';
 import './index.css';
 import backgroundVideo from './assets/Background.mp4';
+
+import GlobalEmotionTracker from './components/GlobalEmotionTracker';
 
 // Global Layout Component
 const AppLayout = ({ children, calmMode, toggleCalmMode, isMuted, toggleMute }) => {
@@ -24,6 +25,7 @@ const AppLayout = ({ children, calmMode, toggleCalmMode, isMuted, toggleMute }) 
   return (
     <div className="app-container">
       
+      <GlobalEmotionTracker />
       
       <main className="screen-content">
         {children}
@@ -111,11 +113,6 @@ function App() {
         <Route path="/feedback" element={
           <AppLayout {...LayoutProps}>
             <FeedbackScreen />
-          </AppLayout>
-        } />
-        <Route path="/emotion" element={
-          <AppLayout {...LayoutProps}>
-            <EmotionScreen />
           </AppLayout>
         } />
       </Routes>

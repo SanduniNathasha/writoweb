@@ -620,7 +620,7 @@ export default function ActivityScreen() {
         paddingTop: 'clamp(.4rem,1vw,.7rem)',
         paddingLeft: 'clamp(.4rem,1vw,.7rem)',
         paddingRight: 'clamp(.4rem,1vw,.7rem)',
-        paddingBottom: 'clamp(.5rem,1.5vw,1rem)',
+        paddingBottom: 'clamp(2rem, 4vh, 3rem)',
         gap: 'clamp(.2rem,.5vw,.35rem)',
         background: 'transparent', overflow: 'hidden',
       }}>

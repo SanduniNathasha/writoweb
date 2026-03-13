@@ -8,7 +8,6 @@ const LoginScreen = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Simulate login
     navigate('/dashboard');
   };
 
