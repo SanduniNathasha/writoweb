@@ -41,15 +41,7 @@
 }
 
 body {
-  font-family: var(--font-main);
-  background-color: var(--bg-color);
-  /* Playful Polka Dot Pattern */
-  background-image: 
-    radial-gradient(rgba(240, 98, 146, 0.15) 15%, transparent 15%),
-    radial-gradient(rgba(255, 202, 40, 0.15) 15%, transparent 15%);
-  background-size: 60px 60px;
-  background-position: 0 0, 30px 30px;
-  animation: gentleDrift 30s linear infinite;
+  font-family: var(--font-main); 
   color: var(--text-primary);
   min-height: 100vh;
   margin: 0;
@@ -79,6 +71,21 @@ body.calm-mode {
 
 body.calm-mode .focus-card {
   box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Softer shadow */
+}
+
+/* Background Video */
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.background-video.hidden {
+  display: none;
 }
 
 /* Typography styles */
